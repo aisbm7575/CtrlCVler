@@ -10,8 +10,8 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QHBoxLayout, QComboBox, QListWidget, QPushButton, 
                              QSlider, QLabel, QInputDialog, QMessageBox, QMenu,
                              QCheckBox, QSystemTrayIcon, QStyle, QFrame)
-from PyQt6.QtCore import Qt, QMimeData, QThread, QTimer
-from PyQt6.QtGui import QDrag, QFont
+from PyQt6.QtCore import Qt, QMimeData, QThread, QTimer, QUrl
+from PyQt6.QtGui import QDrag, QFont, QDesktopServices
 
 DATA_FILE = "data.json"
 REG_APP_NAME = "CtrlCVler"
@@ -303,14 +303,26 @@ class CtrlCVlerApp(QMainWindow):
             QMessageBox.warning(self, "설정 실패", f"시작 프로그램 설정 중 오류가 발생했습니다:\n{e}")
 
     def show_info(self):
-        QMessageBox.information(self, "Ctrl C+Vler 정보", 
+        github_link = "https://github.com/aisbm7575/CtrlCVler"
+        
+        # 팝업창에 표시될 텍스트 (깃허브 주소 포함)
+        info_text = (
             "Ctrl C+Vler v1.0\n\n"
             "나만의 빠르고 편리한 클립보드 매니저입니다.\n\n"
+            f"GitHub: {github_link}\n\n"
             "[Open Source Licenses]\n"
             "- PyQt6 (GPLv3)\n"
             "- pynput (MIT)\n"
             "- keyboard (MIT)"
         )
+        
+        # 정보 팝업창 띄우기 (사용자가 '확인'을 누를 때까지 여기서 멈춤)
+        QMessageBox.information(self, "Ctrl C+Vler 정보", info_text)
+        
+        # '확인'을 눌러 창이 닫히면 기본 브라우저로 깃허브 링크 실행
+        url = QUrl(github_link)
+        QDesktopServices.openUrl(url)
+        
 
     def on_clipboard_changed(self):
         if self.ignore_clipboard:

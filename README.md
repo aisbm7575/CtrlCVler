@@ -2,7 +2,7 @@
 Easy Ctrl + C, V
 Ctrl C+Vler v1.0
 나만의 빠르고 편리한 클립보드 매니저입니다.
-Open Source Licenses
--PyQt6 (GPLv3)
--pynput (MIT)
--keyboard (MIT)
+
+리스트에 있는 복사할 항목을 드래그앤드롭으로 복사, 붙여넣기 가능
+리스트에 있는 복사할 항목을 좌클릭후, 붙여넣기할 곳에서 오른쪽마우스롱클릭하면 붙여넣기 가능
+프로그램 실행 후 복사하면 자동 최신 수집 항목에 자동수집
